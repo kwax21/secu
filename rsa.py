@@ -23,13 +23,13 @@ def number(a):
 
 #CLE PUB
 
-p = int(input("Premier nombre : "))
+p = int(input("Entrer P (nombre premier) : "))
 while not premier(int(p)):
-    p = int(input("Il n'est pas premier : "))
+    p = int(input("Il n'est pas premier, encore une fois : "))
 
-q = int(input("Deuxieme nombre : "))
+q = int(input("Entrer Q (nombre premier): "))
 while not premier(int(q)):
-    q = int(input("Il n'est pas premier : "))
+    q = int(input("Il n'est pas premier, encore une fois : "))
 
 n = p*q
 print("n : ", n)
@@ -37,7 +37,7 @@ phiN = (p-1)*(q-1)
 print("phiN : ", phiN)
 
 if p > q:
-    e = p + 1
+    e = p +1
 else:
     e = q + 1
 
@@ -47,41 +47,42 @@ while pg != 1:
     e += 1
 
 print("e : " , e)
-print("clé : (",e,",",n,")")
+print("Cle publique : (",e,",",n,")")
 
 #CRYPTAGE
 
-test = input("Entrée: ")
+test = input("Message a crypter : ")
 tailletest = len(test)
 
 bloc = int(input("Taille du bloc (mettre 3) : "))
 liste = []
 
 if number(test):
-    print("true")
     tes = (int(test)**e) % n
-    print(tes)
+    print("Cryptage : ", tes)
 else:
     i = 0
     ligne = ""
     while i < tailletest:
-        ascii = ord(test[i])
-        asci = (ascii**e) % n
+        asci = (ord(test[i])**e) % n
         liste.append(asci)
-        ligne = ligne + str(asci) + " "
         i += 1
-        if ascii > n :
-            print ("P et Q trop petits")
-    print ("\nliste : ", liste)
+        if ord(test[i-1]) > n :
+            print ("P et Q sont trop petits")
+    print ("\nliste des blocs : ", liste)
 
 # CLE PRIVEE
-d = q
+
+if p < q:
+    d = q
+else:
+    d = p
 while 1 == 1:
     if((e * d % phiN == 1)):
         break
     d = d + 1
 
-print ("Cle privee : (",d,",",phiN,")")
+print ("\nCle privee : (",d,",",phiN,")")
 
 #DECRYPTAGE
 
@@ -94,4 +95,4 @@ else:
         partie = (pow(to,d) % n)
         ligne = ligne + chr(partie)
 
-print(ligne)
+print("\nMessage décrypté : ",ligne)
