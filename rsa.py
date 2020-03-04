@@ -15,9 +15,11 @@ def pgcd(a,b):
     return a
 
 def number(a):
-    if float(a):
-        return True
-    return False
+    try:
+        if float(a):
+            return True
+    except ValueError:
+        return False
 
 #CLE PUB
 
@@ -81,15 +83,15 @@ while 1 == 1:
 
 print ("Cle privee : (",d,",",phiN,")")
 
-#DECHIFFREMENT
+#DECRYPTAGE
 
 if number(test):
-    ligne = pow(int(test),d) % n
+    ligne = pow(int(tes),d) % n
 else:
     ligne = ""
     for i in range(len(liste)):
         to = liste[i]
-        #partie = partie % n
-        partie = pow(to,d) % n
+        partie = (pow(to,d) % n)
         ligne = ligne + chr(partie)
+
 print(ligne)
