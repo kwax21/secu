@@ -11,17 +11,13 @@ def findEverythingForTheWin(a):
     q = 2
     while 1 == 1:
         if premier(p) and (n % p == 0):
-            usable = n/p
+            q = int(n/p)
             print("P : ", p)
-            while 1 == 1:
-                if premier(q) and (usable % q == 0):
-                    print("Q : ", q)
-                    break
-                else:
-                    q += 1
+            print("Q : ",q)
             break
         else:
             p += 1
+
 
     phiN = (p-1) * (q-1)
     print("phiN : ", phiN)
@@ -39,12 +35,14 @@ def findEverythingForTheWin(a):
     print("\nCle privee : (",d,",",phiN,")")
     print("\nDecryptage du message")
 
-    ligne = pow(this,d) % n
-    print(ligne)
+
+    ligne = pow(this,d)%n
+    print("Fin : ", ligne)
 
 a = "o"
-n = int(input("entrez n : "))
 e = int(input("entrez e : "))
+n = int(input("entrez n : "))
+
 
 while a == "o":
     print("\n")
